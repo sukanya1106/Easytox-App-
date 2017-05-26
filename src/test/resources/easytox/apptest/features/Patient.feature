@@ -3,10 +3,10 @@ Feature: Verifying the Patient page
 
 
 Background: 
- 	Given the easytox url
-	And I enter username as "username"
-	And I enter password as "password"
-	And click on "Login" button 
+ 	Given the easytox url1
+	And I enter username1 as "username"
+	And I enter password1 as "password"
+	And click on "Login" button1
 	
 		Scenario: Navigating to selected screen
 			When Click on Patient Icon
