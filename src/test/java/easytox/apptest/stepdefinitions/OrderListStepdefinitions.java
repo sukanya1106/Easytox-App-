@@ -44,7 +44,7 @@ public class OrderListStepdefinitions {
 	WebDriver driver = null;
 
 
-	@Given("^the easytox url2$")
+	@Given("^the easytox url3$")
 	public void the_easytox_url() {
 		System.setProperty("webdriver.chrome.driver", "src//test//java//easytox//apptest//driver//chromedriver.exe");
 		driver = new ChromeDriver();
@@ -52,7 +52,7 @@ public class OrderListStepdefinitions {
 		loginpage.navigatetowebApp();
 		return;
 	}
-	@And("^I enter username2 as \"([^\"]*)\"$")
+	@And("^I enter username3 as \"([^\"]*)\"$")
 	public void i_enter_the_username(String arg1) {
 		String forgotpwd= driver.findElement(By.linkText("Click here")).getText();
 		Assert.assertEquals("Click here", forgotpwd);
@@ -60,17 +60,17 @@ public class OrderListStepdefinitions {
 		loginpage.EnterUserName(connector.getstring(WebConnector.myUrl.URL_SIT,"UsernameOrderList"));
 	}
 	
-	@And("^I enter password2 as \"([^\"]*)\"$")
+	@And("^I enter password3 as \"([^\"]*)\"$")
 	public void i_enter_the_password(String arg1) {
 		loginpage.EnterPassword(connector.getstring(WebConnector.myUrl.URL_SIT,"PasswordOrderList"));
 	}
 
-	@Then("^click on \"([^\"]*)\" button2$")
+	@Then("^click on \"([^\"]*)\" button3$")
 	public void click_on_button(String arg1) {
 		loginpage.Loginbuttonclick();		
 	}
 	
-	@Then("^close the browser2$")
+	@Then("^close the browser3$")
 	public void close_the_browser() {
 	   loginpage.closeDriver();
 	}
