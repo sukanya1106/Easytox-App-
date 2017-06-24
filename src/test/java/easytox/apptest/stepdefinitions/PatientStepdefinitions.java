@@ -48,7 +48,7 @@ public class PatientStepdefinitions extends AbstractPage {
 		
 	}
 
-	@Given("^the easytox url1$")
+	@Given("^the easytox url2$")
 	public void the_easytox_url() {
 		System.setProperty("webdriver.chrome.driver", "src//test//java//easytox//apptest//driver//chromedriver.exe");
 		driver = new ChromeDriver();
@@ -58,7 +58,7 @@ public class PatientStepdefinitions extends AbstractPage {
 		//Patient = new PatientPage(driver);
 		return;
 	}
-	@And("^I enter username1 as \"([^\"]*)\"$")
+	@And("^I enter username2 as \"([^\"]*)\"$")
 	public void i_enter_the_username(String arg1) {
 		String forgotpwd= driver.findElement(By.linkText("Click here")).getText();
 		Assert.assertEquals("Click here", forgotpwd);
@@ -66,17 +66,17 @@ public class PatientStepdefinitions extends AbstractPage {
 		loginpage.EnterUserName(connector.getstring(WebConnector.myUrl.URL_SIT,"Username"));
 	}
 	
-	@And("^I enter password1 as \"([^\"]*)\"$")
+	@And("^I enter password2 as \"([^\"]*)\"$")
 	public void i_enter_the_password(String arg1) {
 		loginpage.EnterPassword(connector.getstring(WebConnector.myUrl.URL_SIT,"Password"));
 	}
 
-	@Then("^click on \"([^\"]*)\" button1$")
+	@Then("^click on \"([^\"]*)\" button2$")
 	public void click_on_button(String arg1) {
 		loginpage.Loginbuttonclick();		
 	}
 	
-	@Then("^close the browser1$")
+	@Then("^close the browser2$")
 	public void close_the_browser() {
 	   loginpage.closeDriver();
 	}
