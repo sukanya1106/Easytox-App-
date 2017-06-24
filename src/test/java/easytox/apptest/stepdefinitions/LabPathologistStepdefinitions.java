@@ -46,7 +46,7 @@ public class LabPathologistStepdefinitions {
 	LabPathPage labpath = null;
 	LabUserPage labuser = null;
 	
-		@Given("^the easytox url3$")
+		@Given("^the easytox url4$")
 	public void the_easytox_url() {
 		System.setProperty("webdriver.chrome.driver", "src//test//java//easytox//apptest//driver//chromedriver.exe");
 		driver = new ChromeDriver();
@@ -57,7 +57,7 @@ public class LabPathologistStepdefinitions {
 		//Patient = new PatientPage(driver);
 		return;
 	}
-	@And("^I enter username3 as \"([^\"]*)\"$")
+	@And("^I enter username4 as \"([^\"]*)\"$")
 	public void i_enter_the_username(String arg1) {
 		String forgotpwd= driver.findElement(By.linkText("Click here")).getText();
 		Assert.assertEquals("Click here", forgotpwd);
@@ -65,17 +65,17 @@ public class LabPathologistStepdefinitions {
 		loginpage.EnterUserName(connector.getstring(WebConnector.myUrl.URL_SIT,"Username"));
 	}
 	
-	@And("^I enter password3 as \"([^\"]*)\"$")
+	@And("^I enter password4 as \"([^\"]*)\"$")
 	public void i_enter_the_password(String arg1) {
 		loginpage.EnterPassword(connector.getstring(WebConnector.myUrl.URL_SIT,"Password"));
 	}
 
-	@Then("^click on \"([^\"]*)\" button3$")
+	@Then("^click on \"([^\"]*)\" button4$")
 	public void click_on_button(String arg1) {
 		loginpage.Loginbuttonclick();		
 	}
 	
-	@Then("^close the browser3$")
+	@Then("^close the browser4$")
 	public void close_the_browser() {
 	   loginpage.closeDriver();
 	}
