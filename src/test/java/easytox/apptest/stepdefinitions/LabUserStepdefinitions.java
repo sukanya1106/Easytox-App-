@@ -30,16 +30,19 @@ import easytox.apptest.pages.AbstractPage;
 import easytox.apptest.pages.LabUserPage;
 import easytox.apptest.pages.LablistPage;
 import easytox.apptest.pages.LoginPage;
+import easytox.apptest.pages.PatientPage;
 import easytox.apptest.utils.WebConnector;
 import junit.framework.Assert;
 
 public class LabUserStepdefinitions {
 	
+	
 	WebDriver driver = null;	
 	LoginPage loginpage;
 	WebConnector connector = new WebConnector();
 	LabUserPage labuser = null;
-	
+	//PatientPage Patient = null;
+	LablistPage lablist = null;
 
 	@Given("^the easytox url$")
 	public void the_easytox_url() {
@@ -47,9 +50,10 @@ public class LabUserStepdefinitions {
 		driver = new ChromeDriver();
 		loginpage = new LoginPage(driver);
 		loginpage.navigatetowebApp();
-		//lablist = new LablistPage(driver);
+		lablist = new LablistPage(driver);
 		labuser = new LabUserPage(driver);
-	
+		//Patient = new PatientPage(driver);
+		return;
 	//	Assert.assertEquals(forgotpwd, "Click here");
 		//System.out.println(forgotpwd);
 	}
@@ -78,8 +82,6 @@ public class LabUserStepdefinitions {
 	   loginpage.closeDriver();
 	}
 	
-
-
 	//*******Scenario 1: Edit User Personal Information********
 	@When("^Click on Settings Icon$")
 	public void Clicking_on_usericon_under_Action_Column() throws Throwable {
@@ -132,7 +134,7 @@ public class LabUserStepdefinitions {
 		Boolean Enabled = connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"UserInfoName")).isEnabled();
 		Assert.assertEquals(false, false);
 		WebElement WbElm = connector.getWebElement(driver, WebConnector.Identifier.xpath,
-				 connector.getstring(WebConnector.myUrl.URL_OR,"PersonalInfoMail"));
+				 connector.getstring(WebConnector.myUrl.URL_OR,"PersonalInfoMailID"));
 		WbElm.clear();
 		Thread.sleep(1000);
 		WbElm.sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"PersonalMailID"));
@@ -144,7 +146,7 @@ public class LabUserStepdefinitions {
 		String Message = connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"Message")).getText();
 		//System.out.println("=====$$=="+Message);		
 		boolean containerContainsContent = StringUtils.containsIgnoreCase(Message, "Success");
-		Assert.assertEquals(true, true);
+		Assert.assertEquals(containerContainsContent, true);
 				
 		}
 	@And("Click on UserPlusIcon")
@@ -160,7 +162,7 @@ public class LabUserStepdefinitions {
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	LocalDate localDate = LocalDate.now();
 	boolean containerContainsContent = StringUtils.containsIgnoreCase(searchresult, dtf.format(localDate));
-	
+	Assert.assertEquals(true, containerContainsContent);
 		}
 	
 //***********************************************Scenario 2: Lock a Lab User******************************************************
@@ -442,6 +444,8 @@ public class LabUserStepdefinitions {
 		public void the_user_should_be_able_to_navigate_to_the_Previous_page() throws Throwable {
 			Assert.assertTrue(activePage == Integer.parseInt(driver.findElement(By.cssSelector(".pagination li.active a")).getText()));
 		}
+		
+		 
 	}
 		 
 		
