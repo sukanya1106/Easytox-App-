@@ -30,7 +30,6 @@ import easytox.apptest.pages.AbstractPage;
 import easytox.apptest.pages.LabUserPage;
 import easytox.apptest.pages.LablistPage;
 import easytox.apptest.pages.LoginPage;
-import easytox.apptest.pages.PatientPage;
 import easytox.apptest.utils.WebConnector;
 import junit.framework.Assert;
 
