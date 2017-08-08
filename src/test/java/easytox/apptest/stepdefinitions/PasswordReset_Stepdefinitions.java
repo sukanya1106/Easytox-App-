@@ -168,6 +168,7 @@ public class PasswordReset_Stepdefinitions {
 				Assert.assertEquals(true, EnterNewPassword);
 				connector.getWebElement(driver, WebConnector.Identifier.xpath, 
 						connector.getstring(WebConnector.myUrl.URL_OR,"EnterNewPassword")).sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"NewPassword"));
+				Thread.sleep(2000);
 				connector.getWebElement(driver, WebConnector.Identifier.xpath, 
 						connector.getstring(WebConnector.myUrl.URL_OR,"SavePasswordReset")).click();
 				Thread.sleep(5000);
@@ -214,6 +215,7 @@ public class PasswordReset_Stepdefinitions {
 				connector.getstring(WebConnector.myUrl.URL_OR,"EnterNewPassword")).sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"ResetNewPassword"));
 		connector.getWebElement(driver, WebConnector.Identifier.xpath, 
 				connector.getstring(WebConnector.myUrl.URL_OR,"ConfirmNewPassword")).sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"ResetNewPassword"));
+		Thread.sleep(2000);
 		connector.getWebElement(driver, WebConnector.Identifier.xpath, 
 				connector.getstring(WebConnector.myUrl.URL_OR,"SavePasswordReset")).click();
 		Thread.sleep(5000);
