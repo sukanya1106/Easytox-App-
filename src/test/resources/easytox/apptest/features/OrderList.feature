@@ -1,5 +1,5 @@
 @smoke
-Feature: Verifying the Patient page
+Feature: Verifying the Order page
 
 
 Background: 
@@ -37,14 +37,8 @@ Background:
 			When clicked on Prev button on the page OrderList
 			Then the user should be able to navigate to the Previous page on page OrderList
 			Then close the browser3
-		
 			
-		Scenario:Verifying for the patient information
-			
-			And Click on PatientPlusIcon
-			Then Verify the patient information is displayed
-			Then close the browser3
-			
+				
 		Scenario: :Verify the PrintOrder
 			
 			When Click on the Print order icon
