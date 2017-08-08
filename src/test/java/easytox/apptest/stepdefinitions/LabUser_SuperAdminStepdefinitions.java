@@ -689,6 +689,7 @@ public class LabUser_SuperAdminStepdefinitions {
 		
 		@And("Click on PlusIcon in Labclient page to verify lab information")
 		public void Click_on_PlusIcon_in_Labclient_page_to_verify_lab_information() throws Throwable{
+			Thread.sleep(2000);
 			connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"LabclientPlusIcon")).click();
 		}
 		
