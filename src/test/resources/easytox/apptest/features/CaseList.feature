@@ -1,4 +1,4 @@
-
+@smoke
 Feature: Verifying the CaseList
 
 
@@ -44,7 +44,7 @@ Background:
     Then close the browser5
   
    Scenario: Editing a case under Action Column
-   	Then "case" should be displayed under column "action column"
+   	Then "Finalised" should be displayed under column "action column"
    	When Click on the Edit icon under the Action column for finalised case
    	Then popup window should be displayed
     Then close the browser5
