@@ -1,4 +1,4 @@
- @sanity
+@smoke
 Feature: Verifying the Lab List
 
 
