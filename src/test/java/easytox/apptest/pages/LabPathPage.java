@@ -21,7 +21,7 @@ public class LabPathPage extends AbstractPage {
 	}
 	
 	public LabPathPage ActionIcon_Click() throws Throwable{
-		connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"ActionIcon")).click();
+		connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"SettingsIcon")).click();
 		
 		Thread.sleep(4000);
 		
@@ -43,32 +43,8 @@ public class LabPathPage extends AbstractPage {
 		WebElement WbElm = connector.getWebElement(driver, WebConnector.Identifier.xpath,
 				 connector.getstring(WebConnector.myUrl.URL_OR,"SearchBox"));
 
-		WbElm.sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"User"));
+		WbElm.sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"Pathologist"));
 		return new LabPathPage(driver);
 	}                                                                       
 	
-	public void ChangingNumberofRecordsDisplayedonPage(){
-		driver.findElement(By.name("example_length")).click();
-		connector.getWebElement(driver, WebConnector.Identifier.name,connector.getstring(WebConnector.myUrl.URL_OR,"NoofUserRecords")).click();
-		Select dropdown = new Select(connector.getWebElement(driver, 
-								WebConnector.Identifier.name,
-								connector.getstring(WebConnector.myUrl.URL_OR,"NoofUserRecords")));
-		//RequiredNoofRecords
-		dropdown.selectByVisibleText(connector.getstring(WebConnector.myUrl.URL_OR,"RequiredNoofUserRecords"));
-		connector.getWebElement(driver, WebConnector.Identifier.name,connector.getstring(WebConnector.myUrl.URL_OR,"NoofUserRecords")).click();
-		
 	}
-	
-	public void SortingColumns() throws Throwable{
-		
-		connector.getWebElement(driver, WebConnector.Identifier.xpath,
-				connector.getstring(WebConnector.myUrl.URL_OR,"SortingUserarrowhead")).click();
-		
-		
-	}
-
-	
-	
-	
-
-}
