@@ -32,7 +32,7 @@ import easytox.apptest.pages.LabPathPage;
 import easytox.apptest.pages.LabUserPage;
 import easytox.apptest.pages.LablistPage;
 import easytox.apptest.pages.LoginPage;
-import easytox.apptest.pages.PatientPage;
+import easytox.apptest.pages.LabPathPage;
 import easytox.apptest.utils.WebConnector;
 import easytox.apptest.stepdefinitions.LabUserStepdefinitions;
 import junit.framework.Assert;
@@ -197,7 +197,7 @@ public class LabPathologistStepdefinitions {
 		connector.getWebElement(driver, WebConnector.Identifier.xpath,
 				 connector.getstring(WebConnector.myUrl.URL_OR,"ClinicalNPI")).sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"NPI"));;
 																			
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		
 
 		}
@@ -206,7 +206,7 @@ public class LabPathologistStepdefinitions {
 		connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"SubmitPath")).click();
 		String Message = connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"Message")).getText();
 		//System.out.println("=====$$=="+Message);		
-		boolean containerContainsContent = StringUtils.containsIgnoreCase(Message, "Success");
+		boolean containerContainsContent = StringUtils.containsIgnoreCase(Message, "created");
 		Assert.assertEquals(containerContainsContent, true);
 				
 		}
