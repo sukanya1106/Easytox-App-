@@ -1,6 +1,5 @@
 package easytox.apptest.stepdefinitions;
 
-import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -32,157 +31,239 @@ import easytox.apptest.pages.LabUserPage;
 import easytox.apptest.pages.LablistPage;
 import easytox.apptest.pages.LoginPage;
 import easytox.apptest.utils.WebConnector;
-import easytox.apptest.stepdefinitions.LabUserStepdefinitions;
 import junit.framework.Assert;
 
-public class PatientStepdefinitions extends AbstractPage {
+public class PasswordReset_Stepdefinitions {
+	private WebElement row;
 	
-	
-	WebConnector connector = new WebConnector();
+	WebDriver driver = null;	
 	LoginPage loginpage;
-	WebDriver driver = null;
+	WebConnector connector = new WebConnector();
 	
-	public PatientStepdefinitions(WebDriver driver) {
-		super(driver);
-		
-	}
-
-	@Given("^the easytox url2$")
+	@Given("^the easytox url8$")
 	public void the_easytox_url() {
 		System.setProperty("webdriver.chrome.driver", "src//test//java//easytox//apptest//driver//chromedriver.exe");
 		driver = new ChromeDriver();
 		loginpage = new LoginPage(driver);
 		loginpage.navigatetowebApp();
 		
-		//Patient = new PatientPage(driver);
 		return;
 	}
-	@And("^I enter username2 as \"([^\"]*)\"$")
+		
+	    
+	@And("^I enter username8 as \"([^\"]*)\"$")
 	public void i_enter_the_username(String arg1) {
-		String forgotpwd= driver.findElement(By.linkText("Click here")).getText();
-		Assert.assertEquals("Click here", forgotpwd);
-		System.out.println(forgotpwd);
-		loginpage.EnterUserName(connector.getstring(WebConnector.myUrl.URL_SIT,"Username"));
+		
+		loginpage.EnterUserName(connector.getstring(WebConnector.myUrl.URL_SIT,"UsernameAdmin"));
 	}
 	
-	@And("^I enter password2 as \"([^\"]*)\"$")
+	@And("^I enter password8 as \"([^\"]*)\"$")
 	public void i_enter_the_password(String arg1) {
-		loginpage.EnterPassword(connector.getstring(WebConnector.myUrl.URL_SIT,"Password"));
+		loginpage.EnterPassword(connector.getstring(WebConnector.myUrl.URL_SIT,"PasswordAdmin"));
 	}
 
-	@Then("^click on \"([^\"]*)\" button2$")
+	@Then("^click on \"([^\"]*)\" button8$")
 	public void click_on_button(String arg1) {
 		loginpage.Loginbuttonclick();		
 	}
 	
-	@Then("^close the browser2$")
+	@Then("^close the browser8$")
 	public void close_the_browser() {
 	   loginpage.closeDriver();
 	}
-		
-	   	//WebDriver driver = PatientStepdefinitions extends AbstractPage ();	
 	
-//****************************************Scenario 1:Navigate to patient page*****************************************************
-	@When("^Click on Patient Icon$")
-	public void Click_on_Patient_Icon() throws Throwable {
+//*********************************************** 1: Password Reset screen*************************************
+	
+	
+	@When("^Verify the text Forgot Password Click here")
+	public void Verify_the_text_Forgot_Password_Click_here() throws Throwable {
+				
 		
-		System.out.println("hi everybody i am here");
-		Thread.sleep(7000);
-		connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"LibraryIcon")).click();
-		Thread.sleep(4000);
-		connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"PatientIcon")).click();
+		boolean Clickhere = connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"Clickhere")).isDisplayed();
+		Assert.assertEquals(true, Clickhere);
+	
 	}
 	
-//****************************************Scenario 2:Verify the Search Results*****************************************************
-		
-	@When("^Enter Patient search criteria and Matching records with entered data should be displayed in the Patient page$")
-	public void Enter_Patient_search_criteria_and_Matching_records_with_entered_data_should_be_displayed_in_the_Patient_page() throws Throwable {
-		
-		String PatientName = connector.getstring(WebConnector.myUrl.URL_OR,"PatientName");
-		
-		  int i ;
-		  String[] PatientName1 = PatientName.split(";");
-		  int Size = PatientName1.length;
-		  for(i=0;i<Size;i++){
-		
-		  System.out.println(PatientName1[i]);
-		  //connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"SearchBox")).click();
-		  Thread.sleep(4000);
-		  connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"SearchBox")).clear();
-		  WebElement WbElm = connector.getWebElement(driver, WebConnector.Identifier.xpath,
-		  connector.getstring(WebConnector.myUrl.URL_OR,"SearchBox"));
-
-		  WbElm.sendKeys(PatientName1[i]);
-		  Thread.sleep(4000);
-		  String Patient1 = connector.getWebElement(driver, WebConnector.Identifier.xpath, 
-		  connector.getstring(WebConnector.myUrl.URL_OR,"UserName_Validation")).getText();
-			
-		  Assert.assertEquals(PatientName1[i], Patient1);
-		  
-		  }
-		  
-		}
 	
-//*******************************************Scenario 3:Edit patient information********************************************
-	
-	@When("Click on the Edit Patient icon")
-	public void Click_on_the_Edit_Patient_icon() throws Throwable{
-		Thread.sleep(7000);
-		connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"EditPatient")).click();
-		
+	@And("^Click on Click here link")
+	public void Click_Click_herelink() throws Throwable {
+		int i;	
+		String Data = "ForgotPassword;UserNameForgotPassword;EmailIDForgotPassword;Sendmypassword";
+		 String[] Data1 = Data.split(";");
+		 int Size = Data1.length;
+		 connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"Clickhere")).click();
+		Thread.sleep(2000);
+		for(i=0;i<Size;i++){
+			boolean ForgotPassword = connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,Data1[i])).isDisplayed();
+			Assert.assertEquals(true, ForgotPassword);
 		}
-	@And("edit the Patient Personal Information")
-	public void edit_the_Patient_Personal_Information()throws Throwable{
+		
+	}
+	
+	
+//*********************************************** 2: Password Reset for a lab user************************************************
+	
+	@Then("^Enter Username as \"([^\"]*)\" valid email address and click Send my Password button$")
+	public void Enter_Username_as_LabUserone_valid_email_address_and_click_Send_my_Password_button(String arg1) throws Throwable{
+		
 		Thread.sleep(5000);
 		WebElement WbElm = connector.getWebElement(driver, WebConnector.Identifier.xpath,
-				 connector.getstring(WebConnector.myUrl.URL_OR,"PatientAddress"));
-		WbElm.clear();
-		Thread.sleep(1000); 
-		WbElm.sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"Address"));
+				  connector.getstring(WebConnector.myUrl.URL_OR,"UserNameForgotPassword"));
+		String UserNamereset = connector.getstring(WebConnector.myUrl.URL_OR,"UserNamereset");
+	    WbElm.sendKeys(UserNamereset);
+	    Thread.sleep(2000);
+	    WebElement WbElm1 = connector.getWebElement(driver, WebConnector.Identifier.xpath,
+				  connector.getstring(WebConnector.myUrl.URL_OR,"EmailIDForgotPassword"));
+		String EmailIDreset = connector.getstring(WebConnector.myUrl.URL_OR,"EmailIDreset");
+	    WbElm1.sendKeys(EmailIDreset);
+	    connector.getWebElement(driver, WebConnector.Identifier.xpath,
+				  connector.getstring(WebConnector.myUrl.URL_OR,"Sendmypassword")).click();
+	    Thread.sleep(3000);
+	    boolean ResetMessage = connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"ResetMessage")).isDisplayed();
+	    Assert.assertEquals(true, ResetMessage);
+		
+	}
+	
+	
+			
 
-		}
-	@Then("Click on the Patient Update Button")
-	public void Click_on_the_Patient_Update_Button() throws Throwable{
-		connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"PatientInfoUpdate")).click();
-		String Message = connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"SuccessMessage")).getText();
+//*****************************************Pending Password Requests***************************************** 
+	
+	@Then("^Click Pending Password Requests link$")
+	public void Click_Pending_Password_Requests_link() throws Throwable {
+		    Thread.sleep(5000);
+			WebElement WbElm = connector.getWebElement(driver, WebConnector.Identifier.xpath,
+					 connector.getstring(WebConnector.myUrl.URL_OR,"PendingPasswordReequest"));
+	
+			WbElm.click();
+			boolean SeeAllRequest = connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+									connector.getstring(WebConnector.myUrl.URL_OR,"SeeAllRequest")).isDisplayed();
+			Assert.assertEquals(true, SeeAllRequest);
+			connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+					connector.getstring(WebConnector.myUrl.URL_OR,"SeeAllRequest")).click();
+	}
+	@And("^Select the username for which password has to be reset and enter the new password$")		
+	public void Select_the_username_for_which_password_has_to_be_reset_and_enter_the_new_password() throws Throwable {
+		Thread.sleep(5000);	
+		boolean PasswordSearchBox = connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+					connector.getstring(WebConnector.myUrl.URL_OR,"PasswordSearchBox")).isDisplayed();
+			Assert.assertEquals(true, PasswordSearchBox);
+			
+			connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+					connector.getstring(WebConnector.myUrl.URL_OR,"PasswordSearchBox")).sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"UserNamereset"));
+			Thread.sleep(5000);
+			WebElement tableBody = driver.findElement(By.id("example"));
+			
+			List<WebElement> rows = tableBody.findElements(By.tagName("tr"));
+			for(int i=1;i<=rows.size();i++) {
+				row = driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]"+"/td[6]"));  //*[@id="example"]/tbody/tr[1]/td[4]  //*[@id="example"]/tbody/tr[3]/td[4]
+				//String cell = row.findElement(By.xpath("//td[4]")).getText(); 
+				String cell = row.getText();
+				System.out.println("now row is "+i);
+				System.out.println("(((((("+cell+"))))");
+				if (cell.contains("Pending")){
+					driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]"+"/td[7]/div/div/form/a")).click(); 
+				boolean EnterNewPassword = connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+						connector.getstring(WebConnector.myUrl.URL_OR,"EnterNewPassword")).isDisplayed();
+				Assert.assertEquals(true, EnterNewPassword);
+				connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+						connector.getstring(WebConnector.myUrl.URL_OR,"EnterNewPassword")).sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"NewPassword"));
+				Thread.sleep(2000);
+				connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+						connector.getstring(WebConnector.myUrl.URL_OR,"SavePasswordReset")).click();
+				Thread.sleep(5000);
 				
-		boolean containerContainsContent = StringUtils.containsIgnoreCase(Message, "Success");
+				String Message = connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"PasswordResetMsg")).getText();
+				//System.out.println("=====$$=="+Message);		
+				boolean containerContainsContent = StringUtils.containsIgnoreCase(Message, "successfully");
+				Assert.assertEquals(containerContainsContent, true);
+				break;
+				}
+			}
+			
+			
+		}
+			
+	
+//********************************Change password***********************************
+	
+	@When("^Login to Easytox with newly resetted credentials$")
+	public void Login_to_Easytox_with_credentials() throws Throwable {
+			Thread.sleep(5000);
+			
+			loginpage.EnterUserName(connector.getstring(WebConnector.myUrl.URL_SIT,"UsernameToResetPwd"));
+			
+	}
+	@When("^Enter newly resetted credentials and click login")
+	public void Enter_newly_resetted_credentials_and_click_login() throws Throwable {
+			Thread.sleep(5000);
+			
+			
+			loginpage.EnterPassword(connector.getstring(WebConnector.myUrl.URL_SIT,"Resettedpwd"));
+			loginpage.Loginbuttonclick();
+	}
+	
+	@Then("^Verify Change Password screen is displayed and reset a new passowrd$")
+	public void Verify_Change_Password_screen_is_displayed() throws Throwable {
+			
+		boolean Changepwd = connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+		connector.getstring(WebConnector.myUrl.URL_OR,"Changepwd")).isDisplayed();
+		Assert.assertEquals(true, Changepwd);
+		connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+				connector.getstring(WebConnector.myUrl.URL_OR,"EnteroldPassword")).sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"NewPassword"));
+		connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+				connector.getstring(WebConnector.myUrl.URL_OR,"EnterNewPassword")).sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"ResetNewPassword"));
+		connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+				connector.getstring(WebConnector.myUrl.URL_OR,"ConfirmNewPassword")).sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"ResetNewPassword"));
+		Thread.sleep(2000);
+		connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+				connector.getstring(WebConnector.myUrl.URL_OR,"SavePasswordReset")).click();
+		Thread.sleep(5000);
+		
+		String Message = connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"PasswordChangedSuccessMsg")).getText();
+		//System.out.println("=====$$=="+Message);		
+		boolean containerContainsContent = StringUtils.containsIgnoreCase(Message, "successfully");
 		Assert.assertEquals(containerContainsContent, true);
-				
+			
 		}
+	@And("^Enter the newly resetted password$")
+	public void Enter_the_newly_resetted_password() {
+		loginpage.EnterPassword(connector.getstring(WebConnector.myUrl.URL_SIT,"ResetNewPassword"));
+	}
 	
 	
-//*************************************Scenario 4:Verify Number of records displayed***************************************
+		
+//***************************************************************************Scenario 2:Verify Number of records displayed*************************************************************************	
 				
 		
 		
-		@When("^Verify the default number of Patient records displayed$")
-		public void verify_the_default_number_of_records_displayed() throws Throwable {
+		@When("^Verify the default number of records displayed in password reset page$")
+		public void verify_the_default_number_of_records_displayed_in_lab_user_page() throws Throwable {
 			WebElement table = driver.findElement(By.id("example"));
 			int rowsCount = table.findElements(By.xpath("//table[@id='example']/tbody/tr")).size();
 			
 			Assert.assertTrue(rowsCount <= 10);
 		}
 		
-		@Then("^Default number \"([^\"]*)\" should be displayed in the dropdown box on the page Patient$")
-		public void default_number_should_be_displayed_in_the_dropdown_box_on_the_page_Patient(String arg1) throws Throwable {
+		@Then("^Default number \"([^\"]*)\" should be displayed in the dropdown box in password reset page$")
+		public void default_number_should_be_displayed_in_the_dropdown_box_in_lab_user_page(String arg1) throws Throwable {
 			Thread.sleep(2000);
 			Select dropdown = new Select (driver.findElement(By.name("example_length")));
-			System.out.println("Patient:"+dropdown.getFirstSelectedOption().getText());
+			System.out.println("test:"+dropdown.getFirstSelectedOption().getText());
 			int defaultNo = Integer.valueOf(dropdown.getFirstSelectedOption().getText());
 			
 			Assert.assertEquals(10, defaultNo);
 		}
 		
-		@When("^Click on dropdown that shows no of records to be displayed on the page Patient$")
-		public void click_on_dropdown_that_shows_no_of_records_to_be_displayed_on_the_page_Patient() throws Throwable {
+		@When("^Click on dropdown that shows no of records to be displayed on the password reset page")
+		public void click_on_dropdown_that_shows_no_of_records_to_be_displayed_on_the_lab_user_page() throws Throwable {
 			Thread.sleep(2000);
 			driver.findElement(By.name("example_length")).click();
 			Thread.sleep(2000);
 		}
 		
-		@Then("^User should be able to view and select the options from the list and the corresponding number of Patient records should be displayed on the page Patient$")
-		public void user_should_be_able_to_view_and_select_the_options_from_the_list_and_the_corresponding_number_of_records_should_be_displayed_on_the_page() throws Throwable {
+		@Then("^User should be able to view and select the options from the list and the corresponding number of records should be displayed on the password reset page$")
+		public void user_should_be_able_to_view_and_select_the_options_from_the_list_and_the_corresponding_number_of_records_should_be_displayed_on_the_lab_user_page() throws Throwable {
 			Select dropdown = new Select (driver.findElement(By.name("example_length")));
 			dropdown.selectByIndex(1);
 			Thread.sleep(2000);
@@ -201,40 +282,42 @@ public class PatientStepdefinitions extends AbstractPage {
 			}
 		}
 
-	
-//********************************************Scenario 5: Verify the data sorting****************************************
+
+		
+		
+//**************************************************************************************Scenario 3: Verify the data sorting**********************************************************************
 				
 		private WebElement element;
 				
-		@When("^Click on down arrow icon on sorting column on page patient$")
-		public void click_on_down_arrow_icon_on_sorting_column() throws Throwable {
+		@When("^Click on down arrow icon on sorting column in password reset page$")
+		public void click_on_down_arrow_icon_on_sorting_column_in_lab_user_page() throws Throwable {
 			
-			Thread.sleep(3000);
-			element = driver.findElement(By.xpath("//*[@id='example']/thead/tr/th[3]"));
+			loginpage.waittime();
+			element = driver.findElement(By.cssSelector("thead > tr > th:nth-child(3)"));
 			element.click();
 		}
 
-		@Then("^Records should be displayed based on the ascending order of the selected sorting column on page patient$")
-		public void records_should_be_displayed_based_on_the_ascending_order_of_the_selected_sorting_column() throws Throwable {
+		@Then("^Records should be displayed based on the asecending order of the selected sorting column in password reset page$")
+		public void records_should_be_displayed_based_on_the_asecending_order_of_the_selected_sorting_column_in_lab_user_page() throws Throwable {
 			Thread.sleep(3000);
 			Assert.assertTrue(element.getAttribute("class").contains("sorting_asc"));
 		}
 
-		@When("^Click on Up icon arrow on Profile Name column on page patient$")
-		public void click_on_Up_icon_arrow_on_Profile_Name_column() throws Throwable {
+		@When("^Click on Up icon arrow on Profile Name column in password reset page$")
+		public void click_on_Up_icon_arrow_on_Profile_Name_column_in_lab_user_page() throws Throwable {
 			element.click();
 		}
 
-		@Then("^Records should be displayed based on the descending order of the selected sorting column on page patient$")
-		public void records_should_be_displayed_based_on_the_descending_order_of_the_selected_sorting_column() throws Throwable {
+		@Then("^Records should be displayed based on the descending order of the selected sorting column in password reset page$")
+		public void records_should_be_displayed_based_on_the_descending_order_of_the_selected_sorting_column_in_lab_user_page() throws Throwable {
 			Thread.sleep(1000);
 			Assert.assertTrue(element.getAttribute("class").equals("sorting_desc"));
 		}
-//******************************************Scenario:6 Page Navigation**************************************************
+//*****************************************************************************************Scenario:4 Page Navigation*********************************************************************************
 		private int activePage;
 		
-		@When("^clicked on next button on page patient$")
-		public void clicked_on_next_button() throws Throwable {
+		@When("^clicked on next button in password reset page$")
+		public void clicked_on_next_button_in_lab_userpage() throws Throwable {
 			Thread.sleep(1000);
 			WebElement next = driver.findElement(By.cssSelector(".next > a"));
 			
@@ -244,13 +327,13 @@ public class PatientStepdefinitions extends AbstractPage {
 			}
 		}
 		
-		@Then("^the user should be able to navigate to the next page on page patient$")
-		public void the_user_should_be_able_to_navigate_to_the_next_page() throws Throwable {
+		@Then("^the user should be able to navigate to the next page in password reset page$")
+		public void the_user_should_be_able_to_navigate_to_the_next_page_in_labuser_page() throws Throwable {
 			Assert.assertTrue(activePage == Integer.parseInt(driver.findElement(By.cssSelector(".pagination li.active a")).getText()));
 		}
 		
-		@When("^clicked on Prev button$")
-		public void clicked_on_Prev_button() throws Throwable {
+		@When("^clicked on Prev button in password reset page$")
+		public void clicked_on_Prev_button_in_labuser_page() throws Throwable {
 			Thread.sleep(1000);
 			WebElement prev = driver.findElement(By.cssSelector(".prev > a"));
 			
@@ -260,67 +343,54 @@ public class PatientStepdefinitions extends AbstractPage {
 			}
 		}
 		
-		@Then("^the user should be able to navigate to the Previous page on page patient$")
-		public void the_user_should_be_able_to_navigate_to_the_Previous_page() throws Throwable {
+		@Then("^the user should be able to navigate to the Previous page in password reset page$")
+		public void the_user_should_be_able_to_navigate_to_the_Previous_page_in_labuser_page() throws Throwable {
 			Assert.assertTrue(activePage == Integer.parseInt(driver.findElement(By.cssSelector(".pagination li.active a")).getText()));
 		}
-		
-//*******************************************Scenario 7:Patient Insurance details information********************************************
-		
-		@When("Click on the Insurance Detail icon")
-		public void Click_on_the_Insurane_Detail_icon() throws Throwable{
-			connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"InsuranceDetail")).click();
-			
-			}
-		@And("Verify Insurance Detail screen is popped")
-		public void Verify_Insurance_Detail_screen_is_pop_uped()throws Throwable{
-			Thread.sleep(5000);
-			
-			WebElement WbElm = connector.getWebElement(driver, WebConnector.Identifier.xpath,
-					 connector.getstring(WebConnector.myUrl.URL_OR,"Insurancescreen"));
-			Thread.sleep(1000);
-			boolean Status = WbElm.isDisplayed();
-			
-			Assert.assertTrue(Status);
-			
-			
 
-			}
-//*******************************************Scenario 8:Adding a new patient********************************************
-		@When("^Click on the Add New Patient icon$")
-		public void Click_on_the_Add_New_Patient_icon() throws Throwable{
-			Thread.sleep(5000);
-			connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"AddNewPatient")).click();
-			
-			}
-		@Then("^Add Patient screen should be displayed$")
-		public void Add_Patient_screen_should_be_displayed()throws Throwable{
-			Thread.sleep(5000);
-			
-			WebElement WbElm = connector.getWebElement(driver, WebConnector.Identifier.xpath,
-					 connector.getstring(WebConnector.myUrl.URL_OR,"PatientFirstName"));
-			Thread.sleep(1000);
-			boolean Status = WbElm.isDisplayed();
-			
-			Assert.assertTrue(Status);
-			
+//*******************************************************************************Scenario5: Verify the search results**************************************************************************
+		
+		@And("^Enter data in the search box and Verify the search results$")		
+		public void Enter_data_in_the_search_box_and_Verify_the_search_results() throws Throwable {
+			Thread.sleep(2000);	
+			boolean PasswordSearchBox = connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+						connector.getstring(WebConnector.myUrl.URL_OR,"PasswordSearchBox")).isDisplayed();
+				Assert.assertEquals(true, PasswordSearchBox);
+				
+				connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+						connector.getstring(WebConnector.myUrl.URL_OR,"PasswordSearchBox")).sendKeys(connector.getstring(WebConnector.myUrl.URL_OR,"FindwithEmail"));
+				String Emailinfo = connector.getWebElement(driver, WebConnector.Identifier.xpath, 
+						connector.getstring(WebConnector.myUrl.URL_OR,"locateEmail")).getText();
+				String Email = connector.getstring(WebConnector.myUrl.URL_OR,"FindwithEmail");
+				Assert.assertEquals(Email, Emailinfo);
+		}
 
-			}
-//***********************************************Scenario: Verifying for the patient information*******************************
-		@And("Click on PatientPlusIcon")
-		public void Click_on_UserPlusIcon() throws Throwable{
-			Thread.sleep(5000);
-			connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"PatientPlusIcon")).click();
-		}
-		
-		@Then("Verify the patient information is displayed")
-		public void Verify_the_patient_Information_is_displayed() throws Throwable{
-			boolean status = connector.getWebElement(driver, WebConnector.Identifier.xpath,connector.getstring(WebConnector.myUrl.URL_OR,"PatientInformation")).isDisplayed();
-			Assert.assertTrue(status);
-		}
-		
+
+//*******************************************************************************Scenario5: Password Request List**************************************************************************
+				
+				@And("^Verify the details displayed in Password Request List screen$")		
+				public void Verify_the_details_displayed_in_Password_Request_List_screen() throws Throwable {
+					Thread.sleep(2000);	
+					
+					String Data = "Request;Requested By;Requested Date;Requested Email;Resolved By;Status;Action";
+					 String[] Data1 = Data.split(";");
+					 int Size = Data1.length;
+					for(int i=0;i<Size;i++){
+						
+						Thread.sleep(1000);
+						WebElement tableBody = driver.findElement(By.id("example"));
+						
+						List<WebElement> rows = tableBody.findElements(By.tagName("tr"));
+						 int j=i+1;
+							row = driver.findElement(By.xpath("//table[@id='example']/thead/tr[1]"+"/th["+j +"]"));  
+							//String cell = row.findElement(By.xpath("//td[4]")).getText(); 
+							String cell = row.getText();
+							System.out.println(Data1[i]);
+							System.out.println(cell);
+							Assert.assertEquals(cell, Data1[i]);
+							
+					}
+							
+					}
+
 }
-		 
-		
-
-
