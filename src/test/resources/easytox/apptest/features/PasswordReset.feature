@@ -107,6 +107,7 @@ Background:
 			And Click on Click here link
 			Then Enter Username as "LabUserone" valid email address and click Send my Password button
 			Then close the browser8	
+			Given the easytox url8
 			And I enter username8 as "SNLabAdmin"
 			And I enter password8 as "Test@123"
 			Then click on "Login" button8
@@ -122,6 +123,7 @@ Background:
 			And Click on Click here link
 			Then Enter Username as "LabUserone" valid email address and click Send my Password button
 			Then close the browser8	
+			Given the easytox url8
 			And I enter username8 as "SNLabAdmin"
 			And I enter password8 as "Test@123"
 			Then click on "Login" button8
@@ -137,6 +139,7 @@ Background:
 			And Click on Click here link
 			Then Enter Username as "LabUserone" valid email address and click Send my Password button
 			Then close the browser8	
+			Given the easytox url8
 			And I enter username8 as "SNLabAdmin"
 			And I enter password8 as "Test@123"
 			Then click on "Login" button8
